@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Brand Color System per BLUSH Guide */
+    --color-ivory: #f8f4f1;
+    --color-porcelain: #fffdfc;
+    --color-blush: #e89ab2;
+    --color-dusty-rose: #c96f8e;
+    --color-deep-rose: #8e3f5c;
+    --color-espresso: #271e20;
+    --color-espresso-dark: #1a1315;
+    --color-warm-taupe: #a69894;
+    --color-champagne: #c9a66b;
+    --color-champagne-light: #edd6a8;
+
+    /* Theme Tokens */
+    --bg-primary: #f8f4f1;
+    --bg-secondary: #fffdfc;
+    --bg-card: rgba(255, 255, 255, 0.82);
+    --text-primary: #271e20;
+    --text-secondary: #6e5f64;
+    --text-muted: #a69894;
+    --border-subtle: rgba(201, 111, 142, 0.18);
+    --border-glass: rgba(255, 255, 255, 0.75);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(232, 154, 178, 0.35);
+    color: #8e3f5c;
+  }
+}
+
+/* ─── Editorial Typography Utilities ─── */
+.font-serif {
+  font-family: var(--font-serif, "Playfair Display", "Cormorant Garamond", Georgia, serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans, "Plus Jakarta Sans", "Inter", sans-serif);
+}
+
+.blush-gradient-text {
+  background: linear-gradient(135deg, #271e20 0%, #8e3f5c 50%, #c96f8e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blush-rose-gradient-text {
+  background: linear-gradient(135deg, #8e3f5c 0%, #c96f8e 50%, #c9a66b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.champagne-gradient-text {
+  background: linear-gradient(135deg, #c9a66b 0%, #edd6a8 50%, #c9a66b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Glassmorphic Card Styles ─── */
+.glass-card-editorial {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 16px 40px rgba(142, 63, 92, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  border-radius: 1.75rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-editorial:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232, 154, 178, 0.4);
+  box-shadow: 0 22px 50px rgba(142, 63, 92, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+}
+
+.glass-dark-card {
+  background: rgba(39, 30, 32, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(232, 154, 178, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  border-radius: 1.75rem;
+}
+
+/* ─── Button Styles ─── */
+.blush-btn-primary {
+  background: linear-gradient(135deg, #e89ab2 0%, #c96f8e 60%, #8e3f5c 100%);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(201, 111, 142, 0.32);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.blush-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201, 111, 142, 0.48);
+}
+
+.blush-btn-secondary {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(232, 154, 178, 0.35);
+  color: #271e20;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blush-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #c96f8e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(142, 63, 92, 0.08);
+}
+
+/* ─── Ambient Glow Blobs ─── */
+.ambient-glow-blush {
+  background: radial-gradient(circle, rgba(232, 154, 178, 0.22) 0%, rgba(248, 244, 241, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.ambient-glow-champagne {
+  background: radial-gradient(circle, rgba(201, 166, 107, 0.18) 0%, rgba(248, 244, 241, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.ambient-glow-rose {
+  background: radial-gradient(circle, rgba(142, 63, 92, 0.15) 0%, rgba(248, 244, 241, 0) 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* ─── Continuous Marquee Animation for Social Proof ─── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Hide Scrollbar for Horizontal Scroll Lookbook ─── */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Safe Area for Mobile Bottom Sticky Bar ─── */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+
+/* ─── Accessibility: Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee {
+    animation: none !important;
+  }
+}
