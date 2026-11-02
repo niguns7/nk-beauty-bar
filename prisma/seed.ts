@@ -231,8 +231,15 @@ export async function seedCatalog(customCatalog?: RawCatalog) {
       if (!serviceId) {
         throw new Error(`Service not found for slug: ${itemSlug}`);
       }
-      await prisma.bundleItem.create({
-        data: {
+      await prisma.bundleItem.upsert({
+        where: {
+          bundleId_serviceId: {
+            bundleId: bundle.id,
+            serviceId,
+          },
+        },
+        update: { qty: 1 },
+        create: {
           bundleId: bundle.id,
           serviceId,
           qty: 1,

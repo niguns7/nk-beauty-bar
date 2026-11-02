@@ -1,4 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BLUSH — NK Beauty Bar
+
+> 712 W Pipeline Rd Ste 700, Hurst TX 76053
+
+## Backend Pricing & Vagaro Booking Architecture
+
+### HONESTY RULE
+> **HONESTY RULE**: Our backend guarantees what the site quotes and records; Vagaro charges. Every bundle must exist as its own bookable Vagaro service at the same price.
+
+The client browser never computes, sends, or alters prices. All prices displayed across the site and inside the reservation flow come exclusively from the PostgreSQL database via our pure pricing engine. When an appointment reservation is confirmed, a guaranteed server `Quote` is recorded with input hashes and time-to-live restrictions before transferring the visitor to Vagaro with campaign tracking parameters attached.
 
 ## Getting Started
 
