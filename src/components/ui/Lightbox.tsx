@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
-import { X, Calendar, ArrowRight } from "lucide-react";
+import { X, Calendar } from "lucide-react";
 import { GalleryItem } from "@/config/siteContent";
 
 interface LightboxProps {

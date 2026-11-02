@@ -8,7 +8,6 @@ import {
   ChevronDown,
   Sparkles,
   Heart,
-  MapPin,
   Clock,
 } from "lucide-react";
 import { SALON_DATA } from "@/config/siteContent";

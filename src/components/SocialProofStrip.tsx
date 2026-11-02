@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, Heart } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";
 

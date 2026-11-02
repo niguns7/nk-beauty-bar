@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Phone, Calendar, Sparkles } from "lucide-react";
+import { Phone, Calendar } from "lucide-react";
 import { SALON_DATA } from "@/config/siteContent";
 
 interface MobileBookingBarProps {

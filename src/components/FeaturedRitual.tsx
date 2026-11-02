@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, Calendar, Check, Clock, ArrowRight } from "lucide-react";
+import { Sparkles, Calendar, Check, Clock } from "lucide-react";
 import { SALON_DATA } from "@/config/siteContent";
 
 interface FeaturedRitualProps {

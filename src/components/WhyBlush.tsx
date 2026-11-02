@@ -7,8 +7,6 @@ import {
   Sparkles,
   ShieldCheck,
   HeartHandshake,
-  CheckCircle2,
-  Star,
 } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";

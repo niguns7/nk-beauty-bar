@@ -2,9 +2,9 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, ArrowRight, Sparkles, Clock, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, Sparkles, Clock, Calendar } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
-import { SALON_DATA, ServiceItem } from "@/config/siteContent";
+import { SALON_DATA } from "@/config/siteContent";
 
 interface SignatureServicesProps {
   onSelectService: (serviceName?: string) => void;

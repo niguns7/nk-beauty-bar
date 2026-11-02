@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, Calendar, Heart, CheckCircle2, ArrowRight } from "lucide-react";
+import { Sparkles, Calendar } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";
 

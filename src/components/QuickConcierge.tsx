@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sparkles, Calendar, Clock, User, ArrowRight, Check } from "lucide-react";
+import { Sparkles, Calendar, Clock, ArrowRight } from "lucide-react";
 
 interface QuickConciergeProps {
   onQuickBook: (service: string) => void;

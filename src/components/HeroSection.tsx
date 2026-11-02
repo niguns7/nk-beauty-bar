@@ -7,12 +7,8 @@ import {
   Star,
   ShieldCheck,
   Award,
-  Play,
   ArrowUpRight,
   Check,
-  Eye,
-  Feather,
-  Heart,
   Clock,
   ChevronRight,
 } from "lucide-react";

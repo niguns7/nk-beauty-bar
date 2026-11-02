@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, Calendar, ArrowRight, Check } from "lucide-react";
+import { Sparkles, Calendar } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";
 

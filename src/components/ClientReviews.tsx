@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { Star, ChevronLeft, ChevronRight, Sparkles, Quote } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";
 
@@ -22,7 +22,7 @@ export function ClientReviews() {
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
-      nextReview();
+      setCurrentIndex((prev) => (prev + 1) % reviews.length);
     }, 7000);
     return () => clearInterval(timer);
   }, [isPaused, reviews.length]);

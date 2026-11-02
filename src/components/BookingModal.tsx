@@ -4,12 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   X,
   Sparkles,
-  Calendar as CalendarIcon,
-  Clock,
-  User,
   CheckCircle2,
-  Phone,
-  Mail,
   ChevronRight,
   ArrowLeft,
   ExternalLink,
@@ -42,7 +37,8 @@ export function BookingModal({
   initialService,
 }: BookingModalProps) {
   const [step, setStep] = useState<"service" | "specialist" | "datetime" | "details" | "success">("service");
-  const [selectedService, setSelectedService] = useState<string>("");
+  const [selectedService, setSelectedService] = useState<string>(initialService || "");
+  const [prevInitialService, setPrevInitialService] = useState<string | undefined>(initialService);
   const [selectedSpecialist, setSelectedSpecialist] = useState<string>(SPECIALISTS[0].name);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
@@ -53,11 +49,12 @@ export function BookingModal({
     notes: "",
   });
 
-  useEffect(() => {
+  if (initialService !== prevInitialService) {
+    setPrevInitialService(initialService);
     if (initialService) {
       setSelectedService(initialService);
     }
-  }, [initialService]);
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

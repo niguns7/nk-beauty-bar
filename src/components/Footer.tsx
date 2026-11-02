@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, MapPin, Phone, Mail, Clock, ArrowUp } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ArrowUp } from "lucide-react";
 import { SALON_DATA } from "@/config/siteContent";
 
 export function Footer() {

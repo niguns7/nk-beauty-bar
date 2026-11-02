@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Sparkles, Eye, ArrowRight } from "lucide-react";
+import { Eye, ArrowRight } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { Lightbox } from "./ui/Lightbox";
 import { SALON_DATA, GalleryItem } from "@/config/siteContent";

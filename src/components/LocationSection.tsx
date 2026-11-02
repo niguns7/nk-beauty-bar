@@ -9,7 +9,6 @@ import {
   Car,
   ExternalLink,
   Calendar,
-  Sparkles,
 } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";

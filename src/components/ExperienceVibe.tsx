@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, ShieldCheck, Heart, Wine, Gem, Droplet } from "lucide-react";
+import { Sparkles, ShieldCheck, Wine, Gem, Droplet } from "lucide-react";
 
 export function ExperienceVibe() {
   const perks = [
