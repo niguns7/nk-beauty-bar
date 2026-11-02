@@ -1,0 +1,159 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum OfferKind {
+  PERCENT_OFF
+  AMOUNT_OFF
+  FREE_ADDON
+  BONUS_CARD
+  POINTS_MULTIPLIER
+  INFO
+}
+
+enum OfferScope {
+  BUNDLE_ONLY
+  FIRST_VISIT
+  OFF_PEAK
+  GIFT_CARD
+  LOYALTY
+  ANY_ELIGIBLE
+}
+
+enum BundleKind {
+  FIXED
+  BUILD_YOUR_OWN
+}
+
+model ServiceCategory {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      String
+  sortOrder Int       @default(0)
+  services  Service[]
+}
+
+model Service {
+  id              String          @id @default(cuid())
+  slug            String          @unique
+  categoryId      String
+  category        ServiceCategory @relation(fields: [categoryId], references: [id])
+  name            String
+  description     String?
+  durationMin     Int? // nullable; UI hides when null
+  listPriceCents  Int // required, > 0
+  priceIsFrom     Boolean         @default(false) // menu shows "$X+"
+  discountable    Boolean         @default(true) // false ONLY for thread-eyebrow
+  isActive        Boolean         @default(true)
+  priceVerified   Boolean         @default(true)
+  vagaroServiceId String?
+  vagaroUrl       String?
+  sortOrder       Int             @default(0)
+  bundleItems     BundleItem[]
+}
+
+model Bundle {
+  id               String       @id @default(cuid())
+  slug             String       @unique
+  name             String
+  tagline          String?
+  audience         String?
+  kind             BundleKind   @default(FIXED)
+  pickCount        Int? // BUILD_YOUR_OWN only
+  discountPct      Int // 0..15 (DB CHECK)
+  isActive         Boolean      @default(true)
+  activeFrom       DateTime? // null = always
+  activeTo         DateTime?
+  daysOfWeek       Int[] // 0=Sun..6=Sat in SALON_TZ; empty = any
+  featured         Boolean      @default(false)
+  sortOrder        Int          @default(0)
+  vagaroServiceId  String?
+  vagaroUrl        String?
+  vagaroPriceCents Int? // last known Vagaro price for drift check
+  reconciledAt     DateTime?
+  items            BundleItem[]
+}
+
+model BundleItem {
+  bundleId  String
+  serviceId String
+  qty       Int     @default(1)
+  bundle    Bundle  @relation(fields: [bundleId], references: [id], onDelete: Cascade)
+  service   Service @relation(fields: [serviceId], references: [id])
+
+  @@id([bundleId, serviceId])
+}
+
+model Offer {
+  id                      String            @id @default(cuid())
+  code                    String            @unique
+  name                    String
+  description             String
+  kind                    OfferKind
+  scope                   OfferScope
+  percentOff              Int? // CHECK 0..15
+  amountOffCents          Int?
+  freeServiceId           String?
+  params                  Json? // BONUS_CARD rules, multipliers, etc.
+  minSpendCents           Int?
+  daysOfWeek              Int[]
+  requiresCode            Boolean           @default(false)
+  startsAt                DateTime
+  endsAt                  DateTime
+  maxRedemptionsTotal     Int?
+  maxRedemptionsPerClient Int?
+  priority                Int               @default(0)
+  isActive                Boolean           @default(true)
+  redemptions             OfferRedemption[]
+}
+
+model Quote {
+  id             String    @id @default(cuid())
+  createdAt      DateTime  @default(now())
+  expiresAt      DateTime
+  inputHash      String
+  linesJson      Json // [{type,slug,name,qty,listCents,finalCents,discountable}]
+  subtotalCents  Int
+  discountCents  Int
+  totalCents     Int
+  hasFromPrice   Boolean   @default(false)
+  appliedOfferId String?
+  bonusesJson    Json?
+  notesJson      Json?
+  utmJson        Json?
+  clientRef      String? // hashed only
+  handedOffAt    DateTime?
+  vagaroUrl      String?
+}
+
+model OfferRedemption {
+  id        String   @id @default(cuid())
+  offerId   String
+  quoteId   String
+  clientRef String?
+  createdAt DateTime @default(now())
+  offer     Offer    @relation(fields: [offerId], references: [id])
+
+  @@unique([offerId, quoteId])
+}
+
+model PriceAudit {
+  id        String   @id @default(cuid())
+  entity    String
+  entityId  String
+  field     String
+  oldValue  String?
+  newValue  String
+  changedBy String
+  at        DateTime @default(now())
+}
+
+model AppConfig {
+  key   String @id
+  value Json
+}
