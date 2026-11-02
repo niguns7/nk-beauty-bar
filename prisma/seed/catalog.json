@@ -1,0 +1,306 @@
+{
+  "categories": [
+    ["threading", "Threading", 1],
+    ["waxing", "Waxing", 2],
+    ["tinting", "Tinting & Brows", 3],
+    ["hair", "Haircuts & Styling", 4],
+    ["hair-treatments", "Hair Treatments", 5],
+    ["head-spa", "Signature Head Spa", 6],
+    ["lashes", "Eyelash Extensions", 7],
+    ["facials", "Facial Services", 8]
+  ],
+  "services": {
+    "threading": [
+      ["thread-eyebrow", "Eyebrow Threading", 700, "ND"],
+      ["thread-forehead", "Forehead Threading", 600, ""],
+      ["thread-lips", "Lips Threading", 500, ""],
+      ["thread-chin", "Chin Threading", 500, ""],
+      ["thread-sideburns", "Sideburns Threading", 1000, ""],
+      ["thread-chin-neck", "Chin + Neck Threading", 1500, ""],
+      ["thread-full-face", "Full Face Threading", 3500, ""]
+    ],
+    "waxing": [
+      ["wax-eyebrow", "Eyebrow Wax", 700, ""],
+      ["wax-forehead", "Forehead Wax", 600, ""],
+      ["wax-lips", "Lips Wax", 500, ""],
+      ["wax-chin", "Chin Wax", 500, ""],
+      ["wax-sideburns", "Sideburns Wax", 1000, ""],
+      ["wax-chin-neck", "Chin + Neck Wax", 1500, ""],
+      ["wax-nose-ear", "Nose / Ear Wax", 1000, ""],
+      ["wax-full-face", "Full Face Wax", 4000, ""],
+      ["wax-underarms", "Under-Arms Wax", 1500, ""],
+      ["wax-half-arms", "Half Arms Wax", 3000, ""],
+      ["wax-full-arms", "Full Arms Wax", 4000, ""],
+      ["wax-half-legs", "Half Legs Wax", 3000, ""],
+      ["wax-full-legs", "Full Legs Wax", 4500, ""],
+      ["wax-chest", "Chest Wax", 3000, ""],
+      ["wax-full-stomach", "Full Stomach Wax", 3000, ""],
+      ["wax-full-back", "Full Back Wax", 4000, ""],
+      ["wax-half-back", "Half Back Wax", 3500, ""],
+      ["wax-bikini", "Bikini Wax", 2500, ""],
+      ["wax-brazilian", "Brazilian Wax", 4500, ""],
+      ["wax-full-body", "Full Body Wax (Excl. Brazilian)", 14000, ""],
+      ["wax-hydro-jelly-addon", "Hydro Jelly Mask (add-on)", 2500, "U"]
+    ],
+    "tinting": [
+      ["tint-henna", "Henna Tinting", 2000, ""],
+      ["tint-eyebrow-regular", "Eyebrow Tinting (Regular)", 1500, ""],
+      ["tint-lash", "Lash Tinting", 2000, ""],
+      ["tint-brow-lash-combo", "Brow & Lash Tint Combo", 3500, ""],
+      ["brow-lamination-tint", "Brow Lamination + Tinting", 7000, ""],
+      ["brow-lamination", "Brow Lamination", 6000, ""],
+      ["lash-lift-tint", "Lash Lift + Tinting", 6500, ""],
+      ["lash-lift", "Lash Lift", 6000, ""],
+      ["henna-tattoo", "Henna Tattoo", 1000, "F U"]
+    ],
+    "hair": [
+      ["haircut-mens", "Men's Regular Haircut", 2000, ""],
+      ["beard-trim", "Beard Trim", 1200, ""],
+      ["bang-trim", "Bang Trim", 1200, ""],
+      ["haircut-womens", "Women's Haircut", 2500, "F"],
+      ["haircut-child", "Child's Haircut", 1800, ""],
+      ["haircut-senior", "Senior Haircut", 1800, ""],
+      ["hair-styling", "Hair Styling", 3500, "F"]
+    ],
+    "hair-treatments": [
+      ["hair-treatment-mens", "Men's Hair Treatment", 2500, ""],
+      ["hair-treatment-womens", "Women's Hair Treatment", 3500, "F"],
+      ["head-oil-massage", "Head Oil Massage", 2000, "", 15]
+    ],
+    "head-spa": [
+      ["signature-head-spa", "Signature Head Spa", 8500, "", 55]
+    ],
+    "lashes": [
+      ["lash-cluster-natural", "Cluster Lashes (Natural)", 3500, ""],
+      ["lash-cluster-refill", "Cluster Refill", 1500, "F"],
+      ["lash-remover", "Eyelash Remover", 2000, ""],
+      ["lash-classic-full", "Classic Full Set", 10000, "U"],
+      ["lash-classic-refill", "Classic Refill", 3500, "F U"],
+      ["lash-hybrid-full", "Hybrid Full Set", 13000, "U"],
+      ["lash-hybrid-refill", "Hybrid Refill", 4500, "F U"],
+      ["lash-volume-full", "Volume Full Set", 15000, "U"],
+      ["lash-volume-refill", "Volume Refill", 5500, "F U"],
+      ["lash-mega-full", "Mega Volume Full Set", 17500, "U"],
+      ["lash-mega-refill", "Mega Volume Refill", 6500, "F U"],
+      ["lash-cluster-volume", "Cluster Volume", 3500, "U"]
+    ],
+    "facials": [
+      ["facial-express-glow", "Express Glow Facial", 4000, ""],
+      ["facial-signature", "Signature Facial", 7500, ""],
+      ["facial-anti-aging-lift", "Anti-Aging Lift Facial", 8000, ""],
+      ["facial-purifying-acne", "Purifying Acne Facial", 8500, ""]
+    ]
+  },
+  "bundles": [
+    {
+      "slug": "express-glow",
+      "name": "Express Glow",
+      "tagline": "Quick brow, lip and chin clean-up",
+      "audience": "Walk-in / quick visit",
+      "discountPct": 15,
+      "items": ["thread-eyebrow", "thread-lips", "thread-chin"],
+      "sortOrder": 1
+    },
+    {
+      "slug": "brow-polish",
+      "name": "Brow Polish",
+      "tagline": "Shape and tint in one visit",
+      "discountPct": 12,
+      "items": ["thread-eyebrow", "tint-eyebrow-regular"],
+      "sortOrder": 2
+    },
+    {
+      "slug": "smooth-and-polished",
+      "name": "Smooth & Polished",
+      "tagline": "Brows, underarms and half legs",
+      "discountPct": 12,
+      "items": ["thread-eyebrow", "wax-underarms", "wax-half-legs"],
+      "sortOrder": 3
+    },
+    {
+      "slug": "mom-and-me",
+      "name": "Mom & Me",
+      "tagline": "Kid's cut plus mom's brows",
+      "audience": "Families",
+      "discountPct": 10,
+      "daysOfWeek": [0, 6],
+      "items": ["haircut-child", "thread-eyebrow"],
+      "sortOrder": 4
+    },
+    {
+      "slug": "holiday-ready",
+      "name": "Holiday Ready",
+      "tagline": "Cut, style and brows before the gatherings",
+      "discountPct": 12,
+      "activeFrom": "2026-11-09T00:00:00-06:00",
+      "activeTo": "2026-11-25T23:59:59-06:00",
+      "items": ["haircut-womens", "hair-styling", "thread-eyebrow"],
+      "featured": true,
+      "sortOrder": 5
+    },
+    {
+      "slug": "gentlemans-groom",
+      "name": "Gentleman's Groom",
+      "tagline": "Cut, beard, nose/ear and brow clean-up",
+      "audience": "Men",
+      "discountPct": 12,
+      "activeFrom": "2026-11-09T00:00:00-06:00",
+      "activeTo": "2026-12-24T23:59:59-06:00",
+      "items": ["haircut-mens", "beard-trim", "wax-nose-ear", "thread-eyebrow"],
+      "sortOrder": 6
+    },
+    {
+      "slug": "party-glam",
+      "name": "Party Glam",
+      "tagline": "Brows, tint and lash lift for party season",
+      "discountPct": 13,
+      "activeFrom": "2026-12-01T00:00:00-06:00",
+      "activeTo": "2026-12-24T23:59:59-06:00",
+      "items": ["thread-eyebrow", "tint-brow-lash-combo", "lash-lift"],
+      "featured": true,
+      "sortOrder": 7
+    },
+    {
+      "slug": "party-glam-facial",
+      "name": "Party Glam Facial",
+      "tagline": "Brows, tint and an Express Glow facial",
+      "discountPct": 13,
+      "activeFrom": "2026-12-01T00:00:00-06:00",
+      "activeTo": "2026-12-24T23:59:59-06:00",
+      "items": ["thread-eyebrow", "tint-eyebrow-regular", "facial-express-glow"],
+      "sortOrder": 8
+    },
+    {
+      "slug": "holiday-de-stress",
+      "name": "Holiday De-Stress",
+      "tagline": "Head spa plus brows",
+      "discountPct": 10,
+      "activeFrom": "2026-12-01T00:00:00-06:00",
+      "activeTo": "2026-12-31T23:59:59-06:00",
+      "items": ["signature-head-spa", "thread-eyebrow"],
+      "sortOrder": 9
+    },
+    {
+      "slug": "build-your-glow",
+      "name": "Build Your Glow",
+      "tagline": "Pick any 3 services and save 10%",
+      "kind": "BUILD_YOUR_OWN",
+      "pickCount": 3,
+      "discountPct": 10,
+      "items": [],
+      "sortOrder": 10
+    }
+  ],
+  "offers": [
+    {
+      "code": "FIRST_VISIT_FREE_LIPS",
+      "name": "First-Visit Gift",
+      "description": "Free lips threading with any first-visit service of $20 or more.",
+      "kind": "FREE_ADDON",
+      "scope": "FIRST_VISIT",
+      "freeServiceSlug": "thread-lips",
+      "minSpendCents": 2000,
+      "maxRedemptionsPerClient": 1,
+      "startsAt": "2026-11-02T00:00:00-06:00",
+      "endsAt": "2027-12-31T23:59:59-06:00",
+      "priority": 5
+    },
+    {
+      "code": "BIRTHDAY_FREE_LIPS",
+      "name": "Birthday Treat",
+      "description": "Free lips threading in your birthday month (show ID at the desk).",
+      "kind": "FREE_ADDON",
+      "scope": "LOYALTY",
+      "freeServiceSlug": "thread-lips",
+      "requiresCode": true,
+      "maxRedemptionsPerClient": 1,
+      "startsAt": "2026-11-02T00:00:00-06:00",
+      "endsAt": "2027-12-31T23:59:59-06:00",
+      "priority": 4
+    },
+    {
+      "code": "NEIGHBOR10",
+      "name": "Pipeline Neighbors",
+      "description": "10% off discountable services Tue–Thu for staff of nearby businesses.",
+      "kind": "PERCENT_OFF",
+      "scope": "OFF_PEAK",
+      "percentOff": 10,
+      "daysOfWeek": [2, 3, 4],
+      "requiresCode": true,
+      "startsAt": "2026-11-02T00:00:00-06:00",
+      "endsAt": "2027-12-31T23:59:59-06:00",
+      "priority": 10
+    },
+    {
+      "code": "GC_BONUS",
+      "name": "Gift Card Bonus",
+      "description": "Buy $50, get a $10 bonus card. Buy $100, get a $25 bonus card. Bonus cards are valid Jan 2 – Feb 28, 2027.",
+      "kind": "BONUS_CARD",
+      "scope": "GIFT_CARD",
+      "params": {
+        "tiers": [
+          { "spendCents": 5000, "bonusCents": 1000 },
+          { "spendCents": 10000, "bonusCents": 2500 }
+        ],
+        "bonusValidFrom": "2027-01-02",
+        "bonusValidTo": "2027-02-28"
+      },
+      "startsAt": "2026-11-27T00:00:00-06:00",
+      "endsAt": "2026-12-24T23:59:59-06:00",
+      "priority": 20
+    },
+    {
+      "code": "GC_EGIFT_LASTMINUTE",
+      "name": "Last-Minute E-Gift",
+      "description": "Delivered by text or email in 60 seconds.",
+      "kind": "INFO",
+      "scope": "GIFT_CARD",
+      "startsAt": "2026-12-18T00:00:00-06:00",
+      "endsAt": "2026-12-24T23:59:59-06:00",
+      "priority": 1
+    },
+    {
+      "code": "REBOOK_2X_POINTS",
+      "name": "Rebook Bonus",
+      "description": "Book your next visit before you leave and earn double Glow Points.",
+      "kind": "POINTS_MULTIPLIER",
+      "scope": "LOYALTY",
+      "params": { "multiplier": 2 },
+      "startsAt": "2026-11-02T00:00:00-06:00",
+      "endsAt": "2027-12-31T23:59:59-06:00",
+      "priority": 3
+    },
+    {
+      "code": "REFER_10",
+      "name": "Refer a Friend",
+      "description": "Give $10, get $10 toward a future visit (services of $30+). Credit, not a discount.",
+      "kind": "BONUS_CARD",
+      "scope": "LOYALTY",
+      "minSpendCents": 3000,
+      "params": { "giveCents": 1000, "getCents": 1000, "credit": true },
+      "requiresCode": true,
+      "startsAt": "2026-11-02T00:00:00-06:00",
+      "endsAt": "2027-12-31T23:59:59-06:00",
+      "priority": 2
+    }
+  ],
+  "appConfig": {
+    "salonTz": "America/Chicago",
+    "maxDiscountPct": 15,
+    "promoBudgetPct": 10,
+    "quoteTtlMin": 30,
+    "bundleRounding": "NEAREST_DOLLAR_HALF_UP",
+    "reconcileGate": "warn",
+    "loyalty": {
+      "pointsPerDollar": 1,
+      "redeemPoints": 200,
+      "redeemCents": 1000,
+      "browClubEveryNth": 6
+    },
+    "flags": {
+      "membershipPilot": false,
+      "giftCardsPage": true,
+      "glowClubPage": true
+    }
+  }
+}
