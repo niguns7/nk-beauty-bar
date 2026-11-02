@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from "vitest";
-import { calculateQuote, calculateBundlePricing } from "../src/lib/pricing/engine";
+import { calculateQuote } from "../src/lib/pricing/engine";
 import { seedCatalog } from "../prisma/seed";
 import { prisma } from "../src/lib/prisma";
 

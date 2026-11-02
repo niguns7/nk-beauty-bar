@@ -66,10 +66,10 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
 
   const navLinks = [
     { label: "Services", href: "#services", id: "services" },
+    { label: "Bundles", href: "#bundles", id: "bundles" },
+    { label: "Glow Club", href: "/glow-club", id: "glow-club" },
+    { label: "Gift Cards", href: "/gift-cards", id: "gift-cards" },
     { label: "Why BLUSH", href: "#difference", id: "difference" },
-    { label: "Meet Nadia", href: "#owner", id: "owner" },
-    { label: "The Visit", href: "#experience", id: "experience" },
-    { label: "Gallery", href: "#gallery", id: "gallery" },
     { label: "Reviews", href: "#reviews", id: "reviews" },
     { label: "Location", href: "#location", id: "location" },
   ];

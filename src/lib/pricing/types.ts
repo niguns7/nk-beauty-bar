@@ -13,7 +13,7 @@ export const quoteRequestSchema = z
     offerCode: z.string().optional(),
     isFirstVisit: z.boolean().optional(),
     clientRef: z.string().optional(),
-    utm: z.record(z.unknown()).optional(),
+    utm: z.record(z.string(), z.unknown()).optional(),
   })
   .passthrough();
 

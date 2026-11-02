@@ -1,17 +1,32 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Sparkles, Clock, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, Calendar, Check } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
-import { SALON_DATA } from "@/config/siteContent";
+import { CatalogCategory } from "@/lib/catalog";
 
 interface SignatureServicesProps {
-  onSelectService: (serviceName?: string) => void;
+  categories?: CatalogCategory[];
+  onSelectService: (serviceSlug?: string) => void;
 }
 
-export function SignatureServices({ onSelectService }: SignatureServicesProps) {
+const CATEGORY_IMAGES: Record<string, string> = {
+  threading: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85",
+  waxing: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85",
+  tinting: "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=85",
+  hair: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
+  "hair-treatments": "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1200&q=85",
+  "head-spa": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85",
+  lashes: "https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85",
+  facials: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=85",
+};
+
+export function SignatureServices({ categories = [], onSelectService }: SignatureServicesProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(
+    categories[0]?.slug ?? "threading"
+  );
 
   const handleScroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -23,11 +38,13 @@ export function SignatureServices({ onSelectService }: SignatureServicesProps) {
     }
   };
 
+  const activeCategory = categories.find((c) => c.slug === activeCategorySlug) || categories[0];
+
   return (
     <section id="services" className="py-24 sm:py-32 relative z-20 overflow-hidden bg-[#f8f4f1]">
       {/* Subtle background ambient glow */}
-      <div className="absolute top-1/2 -left-48 w-96 h-96 ambient-glow-blush" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 ambient-glow-champagne" />
+      <div className="absolute top-1/2 -left-48 w-96 h-96 ambient-glow-blush pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 ambient-glow-champagne pointer-events-none" />
 
       <div className="w-[92%] sm:w-[85%] lg:w-[80%] mx-auto space-y-12">
         {/* Section Heading & Lookbook Navigation Controls */}
@@ -35,7 +52,7 @@ export function SignatureServices({ onSelectService }: SignatureServicesProps) {
           <SectionHeading
             eyebrow="OUR SIGNATURE SERVICES"
             heading="Carefully chosen rituals for your kind of beauty."
-            description="From precise brows to restorative skin and scalp care, every service is personalized around how you want to look and feel."
+            description="Explore our complete database-backed catalog. Tap any category to view individual services and verified salon pricing."
             align="left"
           />
 
@@ -58,99 +75,85 @@ export function SignatureServices({ onSelectService }: SignatureServicesProps) {
           </div>
         </div>
 
-        {/* ─── HORIZONTAL SCROLL LOOKBOOK CONTAINER ─── */}
+        {/* ─── HORIZONTAL SCROLL CATEGORY CARDS ─── */}
         <div
           ref={scrollContainerRef}
           tabIndex={0}
           role="region"
-          aria-label="Signature services carousel"
+          aria-label="Service categories carousel"
           className="flex items-stretch gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory py-4 px-1"
         >
-          {SALON_DATA.services.map((service) => {
-            const priceValue = service.startingPrice
-              ? service.startingPrice.replace(/starting at\s*/i, "").trim()
-              : "$25";
+          {categories.map((category) => {
+            const isSelected = activeCategorySlug === category.slug;
+            const minDollars = (category.minPriceCents / 100).toFixed(0);
+            const image =
+              CATEGORY_IMAGES[category.slug] ||
+              "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=85";
 
-            const isPopular = Boolean(
-              service.badge?.toLowerCase().includes("popular") ||
-              service.badge?.toLowerCase().includes("favorite") ||
-              service.badge?.toLowerCase().includes("trending")
-            );
+            const durations = category.services
+              .filter((s) => s.durationMin !== null)
+              .map((s) => `${s.durationMin}m`);
+            const durationLabel = durations.length > 0 ? durations[0] : null;
 
             return (
               <div
-                key={service.id}
-                className="flex-none w-[300px] sm:w-[340px] md:w-[380px] snap-start"
+                key={category.id}
+                className="flex-none w-[280px] sm:w-[320px] md:w-[350px] snap-start"
               >
                 <div
-                  onClick={() => onSelectService(service.name)}
-                  className="relative h-[460px] sm:h-[490px] w-full rounded-[2.25rem] overflow-hidden border border-white/40 shadow-[0_18px_45px_rgba(39,30,32,0.16)] flex flex-col justify-between group cursor-pointer transition-all duration-500 hover:shadow-[0_24px_55px_rgba(201,111,142,0.28)] hover:-translate-y-1"
+                  onClick={() => setActiveCategorySlug(category.slug)}
+                  className={`relative h-[420px] sm:h-[450px] w-full rounded-[2.25rem] overflow-hidden border flex flex-col justify-between group cursor-pointer transition-all duration-500 hover:-translate-y-1 ${
+                    isSelected
+                      ? "border-[#c96f8e] shadow-[0_20px_50px_rgba(201,111,142,0.35)] ring-2 ring-[#c96f8e]"
+                      : "border-white/40 shadow-[0_18px_45px_rgba(39,30,32,0.12)] hover:shadow-[0_24px_55px_rgba(201,111,142,0.22)]"
+                  }`}
                 >
-                  {/* Background Full-Bleed Image with linear gradient from black to opacity 0 (bottom to top) */}
+                  {/* Background Full-Bleed Image with gradient overlay */}
                   <div className="absolute inset-0 z-0">
                     <Image
-                      src={service.image}
-                      alt={service.alt}
+                      src={image}
+                      alt={category.name}
                       fill
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                      sizes="(max-width: 640px) 300px, (max-width: 768px) 340px, 380px"
+                      sizes="(max-width: 640px) 280px, 350px"
                     />
-                    {/* Linear gradient from black at bottom to transparent (opacity 0) at top */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent z-10 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10 pointer-events-none" />
                   </div>
 
-                  {/* Top Floating Badge */}
+                  {/* Top Badge */}
                   <div className="relative z-20 p-5 flex items-center justify-between">
-                    <div
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-[0_4px_14px_rgba(0,0,0,0.18)] transition-all ${isPopular
-                        ? "bg-[#e89ab2]/10 text-white"
-                        : "bg-white/20 hover:bg-white backdrop-blur-md text-white"
-                        }`}
-                    >
-                      <span className="tracking-wide">
-                        {`${service.category} Pick`}
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white/20 backdrop-blur-md text-white tracking-wider uppercase">
+                      {category.services.length} {category.services.length === 1 ? "Option" : "Options"}
+                    </span>
+                    {isSelected && (
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-semibold bg-[#8e3f5c] text-white">
+                        <Check className="w-3.5 h-3.5" />
+                        Selected
                       </span>
-                    </div>
+                    )}
                   </div>
 
-                  {/* Bottom Content Directly Over Gradient */}
+                  {/* Bottom Info Card */}
                   <div className="relative z-20 p-6 sm:p-7 flex items-end justify-between gap-4">
-                    {/* Left: Bigger Bold Title & Flex for Time and Service Count */}
-                    <div className="space-y-2 text-left flex-1 min-w-0">
-                      <h3 className="font-serif text-xl sm:text-[28px] font-bold text-white tracking-tight leading-tight drop-shadow-md group-hover:text-[#f8b4c6] transition-colors">
-                        {service.name}
+                    <div className="space-y-1.5 text-left flex-1 min-w-0">
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight leading-tight group-hover:text-[#f8b4c6] transition-colors">
+                        {category.name}
                       </h3>
 
-                      <hr className="my-2 w-1/2 h-0.5 bg-white/50" />
-
-                      {/* Flex for Time and Sub-Service Count */}
-                      <div className="flex items-center flex-wrap gap-2.5 text-xs sm:text-sm text-white/90 pt-0.5">
-                        {service.duration && (
-                          <div className="flex items-center gap-1.5 font-medium">
-                            <Clock className="w-3.5 h-3.5 text-[#f8b4c6] shrink-0" />
-                            <span>{service.duration}</span>
-                          </div>
-                        )}
-                        <span className="text-white/40">•</span>
-                        <div className="flex items-center gap-1.5 font-medium">
-                          <Sparkles className="w-3.5 h-3.5 text-[#f8b4c6] shrink-0" />
-                          <span>{service.serviceCount || `${service.category} Ritual`}</span>
+                      {durationLabel && (
+                        <div className="flex items-center gap-1.5 text-xs text-white/90">
+                          <Clock className="w-3.5 h-3.5 text-[#f8b4c6]" />
+                          <span>From {durationLabel}</span>
                         </div>
-                      </div>
+                      )}
                     </div>
 
-                    {/* Right: Circular Price Badge with 'Starting' Below */}
                     <div className="flex flex-col items-center shrink-0">
-                      <div
-                        className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-serif font-bold text-lg sm:text-xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] border-2 transition-transform duration-300 group-hover:scale-105 ${isPopular
-                          ? "bg-[#e89ab2]/30 backdrop-blur-sm text-[#e89ab2] border-[#f8b4c6]"
-                          : "bg-white/30 backdrop-blur-sm text-white border-white"
-                          }`}
-                      >
-                        {priceValue}
+                      <div className="w-14 h-14 rounded-full flex items-center justify-center font-serif font-bold text-lg bg-white/25 backdrop-blur-md text-white border border-white/60 shadow-lg">
+                        ${minDollars}
                       </div>
-                      <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-white/90 drop-shadow mt-1.5">
-                        Starting
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-white/90 drop-shadow mt-1">
+                        from
                       </span>
                     </div>
                   </div>
@@ -158,47 +161,77 @@ export function SignatureServices({ onSelectService }: SignatureServicesProps) {
               </div>
             );
           })}
+        </div>
 
-          {/* 7th Lookbook Card: Custom Package Consultation */}
-          <div className="flex-none w-[300px] sm:w-[340px] md:w-[380px] snap-start">
-            <div
-              onClick={() => onSelectService("Custom Package Consultation")}
-              className="relative h-[460px] sm:h-[490px] w-full rounded-[2.25rem] overflow-hidden border border-[#e89ab2]/30 shadow-[0_18px_45px_rgba(39,30,32,0.16)] flex flex-col justify-between group cursor-pointer transition-all duration-500 hover:shadow-[0_24px_55px_rgba(201,111,142,0.28)] hover:-translate-y-1 bg-gradient-to-br from-[#8e3f5c] via-[#5c2436] to-[#271e20] text-white"
-            >
-              {/* Decorative Ambient Bloom */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#e89ab2]/25 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#c9a66b]/20 rounded-full blur-3xl pointer-events-none" />
-
-              {/* Top Floating Badge */}
-              <div className="relative z-20 p-5">
-                <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#8e3f5c] text-xs font-semibold shadow-md">
-                  <Sparkles className="w-3.5 h-3.5 text-[#8e3f5c]" />
-                  <span className="tracking-wide">Bespoke Rituals</span>
-                </div>
+        {/* ─── ACTIVE CATEGORY SERVICES ACCORDION / LIST ─── */}
+        {activeCategory && (
+          <div className="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-[#c96f8e]/20 shadow-xl space-y-6 animate-in fade-in duration-300">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#c96f8e]/15 gap-2">
+              <div>
+                <span className="text-[10px] uppercase font-semibold text-[#8e3f5c] tracking-widest">
+                  Menu Pricing · Verified In-Salon
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#271e20]">
+                  {activeCategory.name} Rituals
+                </h3>
               </div>
+              <p className="text-xs text-[#5e5055]">
+                {activeCategory.services.length} services available
+              </p>
+            </div>
 
-              {/* Bottom Content */}
-              <div className="relative z-20 p-6 sm:p-7 space-y-4">
-                <div className="space-y-2">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold leading-tight text-white">
-                    Looking for a custom package?
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#f8f4f1]/80 leading-relaxed font-light">
-                    Combine hair styling, brows, head-spa detox, and facial therapies for special occasions.
-                  </p>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {activeCategory.services.map((srv) => {
+                const formattedPrice = `$${(srv.listPriceCents / 100).toFixed(0)}${
+                  srv.priceIsFrom ? "+" : ""
+                }`;
 
-                <button
-                  type="button"
-                  className="w-full py-3 px-5 rounded-full bg-gradient-to-r from-[#e89ab2] via-[#c96f8e] to-[#8e3f5c] text-white text-xs uppercase tracking-[0.2em] font-semibold flex items-center justify-center gap-2 shadow-md group-hover:opacity-95 transition-all"
-                >
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Reserve Consultation</span>
-                </button>
-              </div>
+                return (
+                  <div
+                    key={srv.id}
+                    onClick={() => onSelectService(srv.slug)}
+                    className="p-5 rounded-2xl border border-[#c96f8e]/15 bg-[#fffdfc] hover:bg-[#f8f4f1] transition-all hover:border-[#c96f8e] group cursor-pointer flex flex-col justify-between space-y-3"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="font-serif text-lg text-[#271e20] group-hover:text-[#8e3f5c] transition-colors">
+                          {srv.name}
+                        </h4>
+                        <span className="text-base font-serif font-bold text-[#8e3f5c] whitespace-nowrap">
+                          {formattedPrice}
+                        </span>
+                      </div>
+                      {srv.description && (
+                        <p className="text-xs text-[#6e5f64] font-light mt-1 line-clamp-2">
+                          {srv.description}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between pt-2 border-t border-[#c96f8e]/10 text-xs">
+                      {srv.durationMin ? (
+                        <span className="text-[#6e5f64] flex items-center gap-1 text-[11px]">
+                          <Clock className="w-3 h-3 text-[#c96f8e]" />
+                          {srv.durationMin} mins
+                        </span>
+                      ) : (
+                        <span />
+                      )}
+
+                      <button
+                        type="button"
+                        className="text-[11px] uppercase font-semibold tracking-wider text-[#8e3f5c] group-hover:underline flex items-center gap-1"
+                      >
+                        <Calendar className="w-3 h-3" />
+                        <span>Reserve</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

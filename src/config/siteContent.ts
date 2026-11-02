@@ -51,19 +51,19 @@ export const SALON_DATA = {
   },
 
   booking: {
-    vagaroUrl: "https://www.vagaro.com/nkbeautybar", // Replace with verified Vagaro URL
-    phone: "(469) 555-0192", // Editable placeholder
-    phoneRaw: "+14695550192",
+    vagaroUrl: "https://www.vagaro.com/nkbeautybar", // Default Vagaro URL
+    phone: "(817) 510-6363",
+    phoneRaw: "+18175106363",
     email: "concierge@nkbeautybar.com",
     address: {
-      street: "12400 Dallas Parkway, Suite 140",
-      city: "Frisco",
+      street: "712 W Pipeline Rd Ste 700",
+      city: "Hurst",
       state: "TX",
-      zip: "75034",
-      landmark: "Located in The Star District",
+      zip: "76053",
+      landmark: "Pipeline Plaza, Hurst TX",
     },
     googleMapsUrl:
-      "https://maps.google.com/?q=12400+Dallas+Parkway+Frisco+TX+75034",
+      "https://maps.google.com/?q=712+W+Pipeline+Rd+Ste+700+Hurst+TX+76053",
     hours: [
       { days: "Tuesday – Friday", time: "9:30 AM – 6:30 PM" },
       { days: "Saturday", time: "9:00 AM – 6:00 PM" },
