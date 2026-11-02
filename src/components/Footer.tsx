@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, ArrowUp } from "lucide-react";
 import { SALON_DATA } from "@/config/siteContent";
 
@@ -21,27 +22,20 @@ export function Footer() {
           {/* 1. Brand Statement & Monogram */}
           <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-3">
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <svg viewBox="0 0 100 100" className="w-full h-full" fill="none">
-                  <path
-                    d="M 46 8 C 47 28, 48 55, 52 92 C 50 78, 47 48, 45 22 Z"
-                    fill="#e89ab2"
-                    opacity="0.95"
-                  />
-                  <path
-                    d="M 47 28 C 65 18, 82 28, 75 46 C 68 62, 50 56, 48 56 C 68 56, 88 66, 78 84 C 68 100, 48 86, 52 74"
-                    stroke="#e89ab2"
-                    strokeWidth="7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+              <div className="relative w-10 h-10 rounded-full overflow-hidden flex items-center justify-center border border-white/20 bg-black shrink-0">
+                <Image
+                  src="/images/nk-logo.png"
+                  alt="NK Beauty Bar Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif tracking-[0.32em] text-lg uppercase text-white font-semibold">
+                <span className="font-serif tracking-[0.24em] text-base uppercase text-white font-bold">
                   {brand.name}
                 </span>
-                <span className="text-[9px] uppercase tracking-[0.38em] text-[#e89ab2] font-medium">
+                <span className="text-[8px] uppercase tracking-[0.34em] text-[#edd6a8] font-medium">
                   {brand.subName}
                 </span>
               </div>
@@ -107,7 +101,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-xs text-[#f8f4f1]/80 font-light">
               <li>
                 <a href="#difference" className="hover:text-[#e89ab2] transition-colors">
-                  Why BLUSH
+                  Why NK Beauty Bar
                 </a>
               </li>
               <li>

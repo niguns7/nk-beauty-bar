@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, Calendar } from "lucide-react";
+import { Sparkles, Calendar, Feather, Smile, Scissors, Heart } from "lucide-react";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SALON_DATA } from "@/config/siteContent";
 
@@ -13,22 +13,38 @@ interface OwnerSectionProps {
 export function OwnerSection({ onOpenBooking }: OwnerSectionProps) {
   const { owner } = SALON_DATA;
 
+  const getSpecialtyIcon = (iconName: string) => {
+    switch (iconName) {
+      case "Feather":
+        return Feather;
+      case "Sparkles":
+        return Sparkles;
+      case "Smile":
+        return Smile;
+      case "Scissors":
+        return Scissors;
+      default:
+        return Heart;
+    }
+  };
+
   return (
-    <section id="owner" className="py-24 sm:py-32 relative z-20 bg-[#f8f4f1] overflow-hidden">
+    <section id="owner" className="py-16 sm:py-28 lg:py-32 relative z-20 bg-[#f8f4f1] overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] ambient-glow-blush -translate-y-1/2" />
       <div className="absolute bottom-0 right-10 w-[400px] h-[400px] ambient-glow-champagne" />
 
-      <div className="w-[92%] sm:w-[85%] lg:w-[80%] mx-auto space-y-16">
-        {/* Section Heading */}
+      <div className="w-[92%] sm:w-[85%] lg:w-[80%] mx-auto space-y-10 sm:space-y-16">
+        {/* Section Heading with bold font */}
         <SectionHeading
           eyebrow={owner.eyebrow}
           heading={owner.heading}
+          fontClass="font-display font-bold text-3xl sm:text-5xl lg:text-6xl"
           align="center"
         />
 
         {/* ─── 2-COLUMN EDITORIAL OWNER STORY ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Left Column: Layered Editorial Portraits & Floating Quote */}
           <div className="lg:col-span-6 relative">
             {/* Background Organic Ambient Gradient Orb */}
@@ -36,7 +52,7 @@ export function OwnerSection({ onOpenBooking }: OwnerSectionProps) {
 
             <div className="relative">
               {/* Primary Large Portrait with Editorial Arch & Pedestal */}
-              <div className="relative h-[480px] sm:h-[560px] w-full sm:w-[88%] rounded-[2.5rem] overflow-hidden border border-white/90 shadow-[0_20px_50px_rgba(142,63,92,0.12)] bg-gradient-to-b from-[#fbf5f2] via-[#f5e8e3] to-[#ebdcd6] flex items-end justify-center">
+              <div className="relative h-[440px] sm:h-[560px] w-full sm:w-[88%] rounded-[2.5rem] overflow-hidden border border-white/90 shadow-[0_20px_50px_rgba(142,63,92,0.12)] bg-gradient-to-b from-[#fbf5f2] via-[#f5e8e3] to-[#ebdcd6] flex items-end justify-center">
                 {/* Subtle Luxury Radial Highlight behind figure */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.85)_0%,rgba(247,235,230,0.4)_50%,transparent_80%)]" />
 
@@ -53,7 +69,7 @@ export function OwnerSection({ onOpenBooking }: OwnerSectionProps) {
                 </div>
               </div>
 
-              {/* Secondary Layered Detail Photograph */}
+              {/* Secondary Layered Detail Photograph (Desktop / Tablet only) */}
               <div className="hidden sm:block absolute -bottom-8 right-0 w-48 h-48 rounded-2xl overflow-hidden border-4 border-[#f8f4f1] shadow-xl">
                 <Image
                   src={owner.detailImage}
@@ -82,40 +98,45 @@ export function OwnerSection({ onOpenBooking }: OwnerSectionProps) {
               <span className="text-xs uppercase tracking-[0.28em] font-semibold text-[#8e3f5c]">
                 {owner.role}
               </span>
-              <h3 className="font-serif text-3xl sm:text-4xl text-[#271e20] font-normal leading-tight">
+              <h3 className="font-display font-bold text-3xl sm:text-4xl text-[#271e20] leading-tight">
                 {owner.name}
               </h3>
             </div>
 
-            {/* Narrative Story */}
-            <div className="space-y-4 text-sm sm:text-base text-[#5e5055] font-light leading-relaxed">
+            {/* Narrative Story (Concise, authentic NK Beauty Bar story) */}
+            <div className="space-y-3 text-sm sm:text-base text-[#5e5055] font-light leading-relaxed">
               <p>{owner.story}</p>
               <p>{owner.extendedStory}</p>
             </div>
 
-            {/* Specialties Badges */}
+            {/* Specialties Badges (Distinct icons, two-word titles) */}
             <div className="space-y-3 pt-2">
               <div className="text-xs uppercase tracking-[0.2em] font-semibold text-[#271e20]">
                 Areas of Artistry
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {owner.specialties.map((spec, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/80 border border-[#c96f8e]/20 text-xs text-[#271e20]"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-[#c96f8e] flex-shrink-0" />
-                    <span className="font-medium">{spec}</span>
-                  </div>
-                ))}
+              <div className="grid grid-cols-2 gap-2.5">
+                {owner.specialties.map((spec, idx) => {
+                  const Icon = getSpecialtyIcon(spec.icon);
+                  return (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-white/85 border border-[#c96f8e]/20 text-xs text-[#271e20] shadow-sm"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-[#f8f4f1] text-[#8e3f5c] flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="font-medium">{spec.name}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Handwritten-Style Subtle Signature Treatment & Action */}
-            <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-[#c96f8e]/15">
+            {/* Handwritten-Style Subtle Signature Treatment & Action - HIDDEN ON MOBILE */}
+            <div className="pt-4 hidden sm:flex sm:flex-row items-center justify-between gap-6 border-t border-[#c96f8e]/15">
               <div>
                 <span className="font-serif italic text-2xl text-[#8e3f5c] tracking-wider font-light">
-                  Bimala Bajgain
+                  {owner.name}
                 </span>
                 <span className="block text-[10px] uppercase tracking-[0.25em] text-[#a69894]">
                   Master Aesthetician

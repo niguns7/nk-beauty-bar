@@ -194,3 +194,4 @@ if (require.main === module || process.argv[1]?.endsWith("catalog-import.ts")) {
       await prisma.$disconnect();
     });
 }
+

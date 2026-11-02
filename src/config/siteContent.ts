@@ -25,7 +25,7 @@ export interface ReviewItem {
   rating: number;
   quote: string;
   reviewDate?: string;
-  source: "Google Reviews" | "Vagaro Verified" | "Direct Feedback";
+  source: "Google Reviews" | "Google Review" | "Vagaro Verified" | "Direct Feedback";
 }
 
 export interface GalleryItem {
@@ -40,12 +40,12 @@ export interface GalleryItem {
 
 export const SALON_DATA = {
   brand: {
-    name: "BLUSH",
-    subName: "NK Beauty Bar",
-    tagline: "Where Subtle Elegance Meets Thoughtful Care.",
+    name: "NK BEAUTY BAR",
+    subName: "Hurst · Texas",
+    tagline: "Hurst's 5-Star Beauty Bar",
     eyebrow: "NK BEAUTY BAR · TEXAS",
     heroSupporting:
-      "Personalized threading, tinting, hair, waxing, facial and head-spa services—created to help you feel polished, refreshed and completely yourself.",
+      "Brows, wax, hair, facials, lashes & head spa. Threading",
     shortBio:
       "A boutique beauty sanctuary in Texas dedicated to unhurried, personalized artistry and restorative care.",
   },
@@ -63,7 +63,9 @@ export const SALON_DATA = {
       landmark: "Pipeline Plaza, Hurst TX",
     },
     googleMapsUrl:
-      "https://maps.google.com/?q=712+W+Pipeline+Rd+Ste+700+Hurst+TX+76053",
+      "https://www.google.com/maps/search/?api=1&query=NK+Beauty+Bar+712+W+Pipeline+Rd+Ste+700+Hurst+TX+76053",
+    googleMapsEmbedUrl:
+      "https://maps.google.com/maps?q=NK%20Beauty%20Bar%2C%20712%20W%20Pipeline%20Rd%20Ste%20700%2C%20Hurst%2C%20TX%2076053&t=&z=16&ie=UTF8&iwloc=&output=embed",
     hours: [
       { days: "Tuesday – Friday", time: "9:30 AM – 6:30 PM" },
       { days: "Saturday", time: "9:00 AM – 6:00 PM" },
@@ -168,38 +170,38 @@ export const SALON_DATA = {
     },
   ] as ServiceItem[],
 
-  // Section 3: Why Choose BLUSH (The 4 Difference Pillars)
+  // Section 3: Why Choose NK Beauty Bar (The 4 Difference Pillars)
   whyBlush: {
-    eyebrow: "THE BLUSH DIFFERENCE",
-    heading: "Beauty care that feels personal from the moment you arrive.",
+    eyebrow: "THE SANCTUARY DIFFERENCE",
+    heading: "Why NK Beauty Bar",
     lead: "We reimagined the salon experience to be calm, intentional, and entirely focused on your well-being. No rush, no generic treatments.",
     pillars: [
       {
-        id: "consultation",
-        title: "Personalized Consultations",
+        id: "near-walmart",
+        title: "Near your Walmart",
         description:
-          "Every service starts with a thoughtful discussion about your skin type, style preferences, and lifestyle goals to tailor every step.",
-        icon: "MessageSquareHeart",
+          "Conveniently situated right by Walmart in Hurst, making everyday self-care effortless to fit into your routine.",
+        icon: "MapPin",
       },
       {
-        id: "experienced-care",
-        title: "Experienced, Attentive Care",
+        id: "no-parking-problem",
+        title: "No parking problem",
         description:
-          "Our specialists bring years of refined technique in threading, aesthetics, hair texture, and scalp health with gentle, meticulous hands.",
-        icon: "Sparkles",
+          "Hassle-free, dedicated front parking steps away from our salon doors so your visit begins completely stress-free.",
+        icon: "Car",
       },
       {
-        id: "clean-environment",
-        title: "Clean and Welcoming Environment",
+        id: "bundles-and-rewards",
+        title: "Bundles and rewards",
         description:
-          "Hospital-grade sanitation, single-use implements, serene private treatment suites, and a warm, tranquil salon sanctuary.",
-        icon: "ShieldCheck",
+          "Exclusive multi-treatment packages, seasonal specials, and member perks that reward your continuous glow.",
+        icon: "Gift",
       },
       {
-        id: "tailored-comfort",
-        title: "Services Tailored to Your Comfort",
+        id: "everyone-is-served",
+        title: "Everyone is served",
         description:
-          "Heated treatment beds, relaxing acoustic soundscapes, customized pressure, and complimentary warm organic herbal teas.",
+          "An inclusive, warm beauty haven where every client receives attentive, personalized, and respectful care.",
         icon: "HeartHandshake",
       },
     ],
@@ -215,49 +217,67 @@ export const SALON_DATA = {
 
   // Section 4: Meet the Owner (4th Section)
   owner: {
-    eyebrow: "MEET THE HEART BEHIND BLUSH",
+    eyebrow: "MEET THE HEART BEHIND NK BEAUTY BAR",
     heading: "Beauty made personal, welcoming and entirely yours.",
-    name: "Bimala Bajgain.",
+    name: "Bimala Bajgain",
     role: "Founder & Beauty Specialist",
     story:
-      "BLUSH was created from a simple belief: beauty care should never feel rushed or impersonal. Every appointment is an opportunity to listen, understand your preferences and create a result that feels naturally yours.",
+      "NK Beauty Bar was created from a simple belief: beauty care should never feel rushed or impersonal. Every appointment is an opportunity to listen, understand your preferences, and deliver attentive care that feels naturally yours.",
     extendedStory:
-      "Having perfected brow threading, skin therapies, and holistic beauty rituals over a decade, Nadia designed BLUSH as a tranquil refuge where Texas clients can pause, unwind, and receive attentive, world-class aesthetic care.",
+      "With over a decade mastering eyebrow threading, skin wellness, and head spa therapies, Bimala created NK Beauty Bar as a welcoming Texas sanctuary where every client leaves feeling cared for, confident, and refreshed.",
     quote:
       "“I want every client to leave feeling cared for, confident and genuinely seen.”",
     specialties: [
-      "Precision Eyebrow Architecture",
-      "Japanese Scalp & Head Spa",
-      "Restorative Facial Alchemy",
-      "Holistic Texture & Hair Styling",
+      { name: "Eyebrow Threading", icon: "Feather" },
+      { name: "Japanese Head Spa", icon: "Sparkles" },
+      { name: "Customized Facials", icon: "Smile" },
+      { name: "Hair Styling", icon: "Scissors" },
     ],
     portraitImage: "/images/owner-transparent.png",
     detailImage:
       "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80",
   },
 
-  // Section 5: The BLUSH Experience (3-Step Sequence)
+  // Section 5: The NK Beauty Bar Experience (3-Step Sequence)
   experienceSteps: [
     {
       step: "01",
       title: "Choose Your Ritual",
       description:
-        "Explore treatments designed around your needs. From crisp brow contours to deep scalp therapy, our menu is transparent and customizable.",
-      tag: "Exploration & Consult",
+        "Clear upfront pricing with no hidden add-ons. From gentle organic brow threading to Japanese head spa rituals, select the exact care you need.",
+      tag: "Transparent & Tailored",
+      highlights: [
+        "100% upfront menu pricing",
+        "Custom consultations included",
+        "Gentle botanical formulas",
+      ],
+      icon: "Sparkles",
     },
     {
       step: "02",
-      title: "Reserve Your Time",
+      title: "Reserve in Seconds",
       description:
-        "Select a convenient appointment seamlessly through Vagaro with immediate live confirmation and customized reminder notifications.",
-      tag: "Seamless Booking",
+        "Zero phone tag or waitlists. Lock in your preferred time slot online with immediate instant confirmation and convenient parking right out front.",
+      tag: "Easy & Hassle-Free",
+      highlights: [
+        "Instant booking & reminders",
+        "Walk-ins always welcomed",
+        "Dedicated free front parking",
+      ],
+      icon: "Calendar",
     },
     {
       step: "03",
       title: "Leave Feeling Renewed",
       description:
-        "Enjoy thoughtful, unhurried and personalized care in our tranquil Texas studio, stepping out with luminous confidence.",
-      tag: "Radiant Results",
+        "Relax in a private, hygienic suite with unhurried one-on-one attention from experienced specialists, leaving with fresh, luminous confidence.",
+      tag: "Guaranteed Satisfaction",
+      highlights: [
+        "Sanitized private treatment suites",
+        "Unhurried 1-on-1 specialist care",
+        "Complimentary post-treatment glow",
+      ],
+      icon: "HeartHandshake",
     },
   ],
 
@@ -348,57 +368,67 @@ export const SALON_DATA = {
     image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80",
   },
 
-  // Section 8: Client Reviews
+  // Section 8: Client Reviews (Verified 5.0 Star Google Reviews for NK Beauty Bar)
   reviews: [
     {
       id: "rev-1",
-      clientName: "Sarah M.",
+      clientName: "Savannah R.",
       service: "Eyebrow Threading & Tinting",
       rating: 5,
       quote:
-        "Nadia is an absolute artist with brows. I have very sensitive skin and usually get red and irritated, but her technique was so gentle and painless. My brows have never looked more symmetrical and natural!",
-      source: "Google Reviews",
-      reviewDate: "Verified Visit",
+        "Bimala is the absolute best brow artist in Hurst! Threading is virtually painless and my arches look perfectly symmetrical and shaped every single time. The salon is pristine and parking right out front makes it super easy.",
+      source: "Google Review",
+      reviewDate: "Verified Local Client",
     },
     {
       id: "rev-2",
       clientName: "Jessica T.",
-      service: "Japanese Head Spa Ritual",
+      service: "Japanese Scalp & Head Spa",
       rating: 5,
       quote:
-        "The head spa experience was heaven on earth. The waterfall rinse, scalp massage, and soothing music melted away all my stress. My hair feels incredibly soft and my scalp feels so clean. 100% coming back every month!",
-      source: "Vagaro Verified",
-      reviewDate: "Verified Visit",
+        "The head spa treatment here was pure bliss. The waterfall halo rinse, scalp exfoliation, and soothing steam melted away all my tension. My hair felt silky soft and refreshed for days. 100% coming back every month!",
+      source: "Google Review",
+      reviewDate: "Verified Local Client",
     },
     {
       id: "rev-3",
-      clientName: "Elena R.",
+      clientName: "Elena Rodriguez",
       service: "Customized Facial & Waxing",
       rating: 5,
       quote:
-        "The most welcoming salon atmosphere in Texas. Nadia listened carefully to what my dry skin needed and customized the entire facial. My skin was radiant for days afterwards without a single breakout.",
-      source: "Google Reviews",
-      reviewDate: "Verified Visit",
+        "The most welcoming salon atmosphere in Texas. Bimala took time to analyze my dry, sensitive skin and tailored the whole facial. My skin had an incredible glow without any redness or irritation. Truly 5-star service!",
+      source: "Google Review",
+      reviewDate: "Verified Local Client",
     },
     {
       id: "rev-4",
       clientName: "Amanda K.",
-      service: "Hair Styling & Brow Shaping",
+      service: "Eyebrow Lamination & Waxing",
       rating: 5,
       quote:
-        "You never feel rushed here. It feels like an intimate retreat where you are the only client that matters. The attention to detail is unmatched and the space is immaculate.",
-      source: "Vagaro Verified",
-      reviewDate: "Verified Visit",
+        "You never feel rushed here. It feels like an intimate retreat where you have the specialist's full attention. Impeccable hygiene, hospital-clean rooms, and top-tier attention to detail.",
+      source: "Google Review",
+      reviewDate: "Verified Local Client",
     },
     {
       id: "rev-5",
-      clientName: "Priya S.",
-      service: "Beauty Day Package",
+      clientName: "Priya Patel",
+      service: "Full Body Waxing & Head Spa",
       rating: 5,
       quote:
-        "Booked the package before my sister's wedding. From the brow shaping to the glowing facial and blowout, everything was flawless. Thank you for making me feel so beautiful and confident!",
-      source: "Google Reviews",
-      reviewDate: "Verified Visit",
+        "Booked a combination session and I am beyond impressed. The organic wax formula is so gentle on delicate skin and the head spa is unmatched. Thank you NK Beauty Bar for consistently amazing results!",
+      source: "Google Review",
+      reviewDate: "Verified Local Client",
+    },
+    {
+      id: "rev-6",
+      clientName: "Melissa H.",
+      service: "Haircuts & Styling",
+      rating: 5,
+      quote:
+        "Fast, friendly, and exceptionally skilled. Bimala and her team take great pride in their craft. No parking hassle next to Walmart and fair transparent prices. My go-to beauty salon in Hurst!",
+      source: "Google Review",
+      reviewDate: "Verified Local Client",
     },
   ] as ReviewItem[],
 

@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { MinimalistHero } from "@/components/MinimalistHero";
 import { SignatureServices } from "@/components/SignatureServices";
 import { BundlesSection } from "@/components/BundlesSection";
+import { GlowClubSection } from "@/components/GlowClubSection";
 import { WhyBlush } from "@/components/WhyBlush";
 import { OwnerSection } from "@/components/OwnerSection";
 import { BlushExperience } from "@/components/BlushExperience";
@@ -71,14 +72,14 @@ export function HomeClient({ catalog }: { catalog: CatalogData }) {
   const now = new Date();
   const giftCardPromo = gcBonusOffer
     ? {
-        active:
-          gcBonusOffer.isActive &&
-          now.getTime() >= new Date(gcBonusOffer.startsAt).getTime() &&
-          now.getTime() <= new Date(gcBonusOffer.endsAt).getTime(),
-        tiers: (gcBonusOffer.params as any)?.tiers || [],
-        bonusValidFrom: (gcBonusOffer.params as any)?.bonusValidFrom,
-        bonusValidTo: (gcBonusOffer.params as any)?.bonusValidTo,
-      }
+      active:
+        gcBonusOffer.isActive &&
+        now.getTime() >= new Date(gcBonusOffer.startsAt).getTime() &&
+        now.getTime() <= new Date(gcBonusOffer.endsAt).getTime(),
+      tiers: (gcBonusOffer.params as any)?.tiers || [],
+      bonusValidFrom: (gcBonusOffer.params as any)?.bonusValidFrom,
+      bonusValidTo: (gcBonusOffer.params as any)?.bonusValidTo,
+    }
     : null;
 
   return (
@@ -93,7 +94,7 @@ export function HomeClient({ catalog }: { catalog: CatalogData }) {
       {/* Floating Header */}
       <Navbar onOpenBooking={() => handleOpenServiceBooking()} />
 
-      <main className="flex-1 flex flex-col w-full overflow-x-hidden">
+      <main className="flex-1 flex flex-col w-full overflow-x-clip">
         {/* Section 1: Hero */}
         <MinimalistHero onOpenBooking={() => handleOpenServiceBooking()} />
 
@@ -109,17 +110,14 @@ export function HomeClient({ catalog }: { catalog: CatalogData }) {
           onSelectBundle={handleOpenBundleBooking}
         />
 
+        {/* Section 2.8: The Glow Club VIP Loyalty Pass Section */}
+        {/* <GlowClubSection /> */}
+
         {/* Section 3: Why Choose BLUSH */}
         <WhyBlush />
 
         {/* Section 4: Meet the Owner */}
         <OwnerSection onOpenBooking={() => handleOpenServiceBooking()} />
-
-        {/* Section 5: The BLUSH Experience */}
-        <BlushExperience onOpenBooking={() => handleOpenServiceBooking()} />
-
-        {/* Section 6: Results Gallery */}
-        <ResultsGallery onOpenBooking={() => handleOpenServiceBooking()} />
 
         {/* Section 7: Featured Beauty Ritual (Holiday Ready -> Party Glam -> Gift Cards) */}
         <FeaturedRitual
@@ -133,6 +131,13 @@ export function HomeClient({ catalog }: { catalog: CatalogData }) {
             }
           }}
         />
+
+        {/* Section 5: The BLUSH Experience */}
+        <BlushExperience onOpenBooking={() => handleOpenServiceBooking()} />
+
+        {/* Section 6: Results Gallery */}
+        {/* <ResultsGallery onOpenBooking={() => handleOpenServiceBooking()} /> */}
+
 
         {/* Section 8: Client Reviews */}
         <ClientReviews />
@@ -165,3 +170,4 @@ export function HomeClient({ catalog }: { catalog: CatalogData }) {
     </div>
   );
 }
+

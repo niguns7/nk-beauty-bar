@@ -40,3 +40,4 @@ export function trackEvent<K extends keyof AnalyticsEventMap>(
     console.log(`[Server Analytics Event: ${event}]`, payload);
   }
 }
+

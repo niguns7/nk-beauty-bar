@@ -32,3 +32,4 @@ describe("Gift Cards Page - Database-Backed Pricing", () => {
     expect(egiftOffer?.description).toBe("Delivered by text or email in 60 seconds.");
   });
 });
+

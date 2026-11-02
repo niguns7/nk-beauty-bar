@@ -105,10 +105,10 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* LEFT COLUMN: Editorial Typography & CTAs */}
           <div className="lg:col-span-7 space-y-7 text-left">
-            
+
             {/* Top Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-[#d4af37]/35 shadow-[0_0_20px_rgba(212,175,55,0.15)]">
               <span className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse" />
@@ -119,14 +119,12 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
 
             {/* Main Headline */}
             <div className="space-y-3">
-              <h1 className="font-serif text-4xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.08]">
-                Where Elegance <br className="hidden sm:inline" />
-                Meets <span className="gold-gradient-text italic font-normal">Artistry.</span>
+              <h1 className="font-display text-4xl sm:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.08]">
+                Hurst&apos;s 5-Star <br className="hidden sm:inline" />
+                <span className="gold-gradient-text">Beauty Bar</span>
               </h1>
-              <p className="text-base sm:text-lg text-[#a1a1aa] max-w-xl font-light leading-relaxed">
-                Step into a sanctuary crafted for beauty connoisseurs. Experience bespoke
-                lash architecture, 24K dermal alchemy, and Japanese nail couture designed to
-                illuminate your natural radiance.
+              <p className="text-base sm:text-lg text-[#d4af37]/90 max-w-xl font-medium leading-relaxed">
+                Brows, wax, hair, facials, lashes &amp; head spa. Threading
               </p>
             </div>
 
@@ -137,14 +135,14 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
                 className="gold-glow-btn px-8 py-4 rounded-full text-xs sm:text-sm uppercase tracking-wider font-bold flex items-center gap-2.5 cursor-pointer"
               >
                 <Calendar className="w-4 h-4" />
-                <span>Reserve Appointment</span>
+                <span>Book Online</span>
               </button>
 
               <a
                 href="#signature"
                 className="px-6 py-4 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 hover:border-[#d4af37]/50 text-xs sm:text-sm uppercase tracking-wider font-semibold text-[#f4f4f5] flex items-center gap-2 transition-all"
               >
-                <span>Explore Menu</span>
+                <span>View Services</span>
                 <ArrowUpRight className="w-4 h-4 text-[#d4af37]" />
               </a>
             </div>
@@ -192,18 +190,17 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
 
           {/* RIGHT COLUMN: Interactive Luxury Treatment Showcase */}
           <div className="lg:col-span-5 relative">
-            
+
             {/* Category Tabs */}
             <div className="flex items-center justify-start gap-1 p-1.5 rounded-2xl bg-[#121218]/90 border border-white/10 mb-4 backdrop-blur-md overflow-x-auto">
               {FEATURED_TREATMENTS.map((item, idx) => (
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                    activeTab === idx
-                      ? "bg-[#d4af37] text-black shadow-[0_0_15px_rgba(212,175,55,0.4)]"
-                      : "text-[#a1a1aa] hover:text-white hover:bg-white/5"
-                  }`}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${activeTab === idx
+                    ? "bg-[#d4af37] text-black shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                    : "text-[#a1a1aa] hover:text-white hover:bg-white/5"
+                    }`}
                 >
                   {item.category}
                 </button>
@@ -212,7 +209,7 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
 
             {/* Main Showcase Glass Card */}
             <div className="glass-panel rounded-3xl p-5 sm:p-6 border border-[#d4af37]/30 relative group shadow-[0_25px_60px_rgba(0,0,0,0.8)]">
-              
+
               {/* Card Image Container */}
               <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden mb-5 border border-white/10">
                 <img
@@ -221,7 +218,7 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent opacity-90" />
-                
+
                 {/* Floating Image Badges */}
                 <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#09090b]/80 backdrop-blur-md border border-[#d4af37]/30 text-[11px] font-semibold text-[#f5e6a8] flex items-center gap-1.5">
                   <Sparkles className="w-3 h-3 text-[#d4af37]" />

@@ -10,6 +10,7 @@ interface SectionHeadingProps {
   align?: "left" | "center" | "right";
   theme?: "light" | "dark";
   className?: string;
+  fontClass?: string;
 }
 
 export function SectionHeading({
@@ -19,6 +20,7 @@ export function SectionHeading({
   align = "center",
   theme = "light",
   className = "",
+  fontClass = "",
 }: SectionHeadingProps) {
   const isCenter = align === "center";
   const isRight = align === "right";
@@ -44,7 +46,7 @@ export function SectionHeading({
 
       {/* Expressive Editorial Heading */}
       <h2
-        className={`font-serif text-3xl sm:text-4xl lg:text-[42px] leading-[1.2] font-normal tracking-tight ${
+        className={`${fontClass || "font-serif text-3xl sm:text-4xl lg:text-[42px]"} leading-[1.2] tracking-tight ${
           isDark ? "text-[#fffdfc]" : "text-[#271e20]"
         }`}
       >

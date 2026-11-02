@@ -207,3 +207,4 @@ export async function GET(
 
   return NextResponse.redirect(destination.toString(), 302);
 }
+

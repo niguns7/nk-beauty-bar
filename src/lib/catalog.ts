@@ -220,3 +220,4 @@ export async function getCatalog(simulatedNow?: Date): Promise<CatalogData> {
     featuredBundle,
   };
 }
+

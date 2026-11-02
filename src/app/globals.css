@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap");
 @import "tailwindcss";
 
 @layer base {
@@ -33,7 +34,7 @@
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -45,12 +46,38 @@
 }
 
 /* ─── Editorial Typography Utilities ─── */
+.font-display {
+  font-family: var(--font-display, "DM Serif Display", Georgia, serif);
+}
+
 .font-serif {
   font-family: var(--font-serif, "Playfair Display", "Cormorant Garamond", Georgia, serif);
 }
 
 .font-sans {
   font-family: var(--font-sans, "Plus Jakarta Sans", "Inter", sans-serif);
+}
+
+.font-script {
+  font-family: "Alex Brush", cursive, Georgia, serif;
+}
+
+/* 3D Flip Card Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
 
 .blush-gradient-text {
@@ -176,6 +203,26 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ─── Luxury Scrollbar for Menu Containers ─── */
+.luxury-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.luxury-scrollbar::-webkit-scrollbar-track {
+  background: rgba(201, 111, 142, 0.05);
+  border-radius: 9999px;
+}
+.luxury-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(201, 111, 142, 0.28);
+  border-radius: 9999px;
+}
+.luxury-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(142, 63, 92, 0.55);
+}
+.luxury-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 111, 142, 0.28) rgba(201, 111, 142, 0.05);
 }
 
 /* ─── Safe Area for Mobile Bottom Sticky Bar ─── */

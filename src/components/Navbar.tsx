@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { ArrowRight, Menu, X, Calendar, Phone, Sparkles } from "lucide-react";
 import { SALON_DATA } from "@/config/siteContent";
 
 interface NavbarProps {
   onOpenBooking: (serviceName?: string) => void;
+  activePage?: string;
 }
 
-export function Navbar({ onOpenBooking }: NavbarProps) {
+export function Navbar({ onOpenBooking, activePage }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -64,14 +66,15 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
     };
   }, [mobileMenuOpen]);
 
+  const prefix = activePage ? "/" : "";
   const navLinks = [
-    { label: "Services", href: "#services", id: "services" },
-    { label: "Bundles", href: "#bundles", id: "bundles" },
+    { label: "Services", href: `${prefix}#services`, id: "services" },
+    { label: "Bundles", href: `${prefix}#bundles`, id: "bundles" },
     { label: "Glow Club", href: "/glow-club", id: "glow-club" },
     { label: "Gift Cards", href: "/gift-cards", id: "gift-cards" },
-    { label: "Why BLUSH", href: "#difference", id: "difference" },
-    { label: "Reviews", href: "#reviews", id: "reviews" },
-    { label: "Location", href: "#location", id: "location" },
+    { label: "Why NK", href: `${prefix}#difference`, id: "difference" },
+    { label: "Reviews", href: `${prefix}#reviews`, id: "reviews" },
+    { label: "Location", href: `${prefix}#location`, id: "location" },
   ];
 
   return (
@@ -90,32 +93,22 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
             }`}
           >
             {/* Brand Logo & Monogram */}
-            <a href="#" className="flex items-center gap-3 group" aria-label="BLUSH NK Beauty Bar Home">
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <svg
-                  viewBox="0 0 100 100"
-                  className="w-full h-full transform group-hover:scale-105 transition-transform duration-300"
-                  fill="none"
-                >
-                  <path
-                    d="M 46 8 C 47 28, 48 55, 52 92 C 50 78, 47 48, 45 22 Z"
-                    fill="#c96f8e"
-                    opacity="0.95"
-                  />
-                  <path
-                    d="M 47 28 C 65 18, 82 28, 75 46 C 68 62, 50 56, 48 56 C 68 56, 88 66, 78 84 C 68 100, 48 86, 52 74"
-                    stroke="#c96f8e"
-                    strokeWidth="7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+            <a href={activePage ? "/" : "#"} className="flex items-center gap-2.5 sm:gap-3 group" aria-label="NK Beauty Bar Home">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden flex items-center justify-center shadow-xs border border-white/80 shrink-0">
+                <Image
+                  src="/images/nk-logo.png"
+                  alt="NK Beauty Bar Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-300"
+                  priority
+                />
               </div>
               <div className="flex flex-col text-left">
-                <span className="font-serif tracking-[0.32em] text-sm uppercase text-[#271e20] font-semibold">
+                <span className="font-serif tracking-[0.2em] sm:tracking-[0.24em] text-xs sm:text-sm uppercase text-[#271e20] font-bold">
                   {SALON_DATA.brand.name}
                 </span>
-                <span className="text-[8px] uppercase tracking-[0.38em] text-[#a69894] font-medium">
+                <span className="text-[8px] uppercase tracking-[0.3em] text-[#a69894] font-medium">
                   {SALON_DATA.brand.subName}
                 </span>
               </div>
@@ -124,7 +117,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-7 text-[11px] uppercase tracking-[0.22em] font-semibold text-[#4e4047]">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
+                const isActive = activePage ? activePage === link.id : activeSection === link.id;
                 return (
                   <a
                     key={link.href}
@@ -180,10 +173,18 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-4 border-b border-[#c96f8e]/15">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#c96f8e]" />
-                <span className="font-serif tracking-[0.24em] text-sm uppercase text-[#271e20] font-semibold">
-                  BLUSH MENU
+              <div className="flex items-center gap-2.5">
+                <div className="relative w-7 h-7 rounded-full overflow-hidden border border-[#c96f8e]/30 shadow-xs">
+                  <Image
+                    src="/images/nk-logo.png"
+                    alt="NK Beauty Bar Logo"
+                    width={28}
+                    height={28}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="font-serif tracking-[0.24em] text-sm uppercase text-[#271e20] font-bold">
+                  NK BEAUTY BAR
                 </span>
               </div>
               <button
@@ -196,16 +197,21 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
             </div>
 
             <nav className="flex flex-col space-y-3.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-base tracking-[0.18em] uppercase text-[#271e20] hover:text-[#c96f8e] font-serif py-1 transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activePage ? activePage === link.id : activeSection === link.id;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`text-base tracking-[0.18em] uppercase font-serif py-1 transition-colors ${
+                      isActive ? "text-[#8e3f5c] font-semibold" : "text-[#271e20] hover:text-[#c96f8e]"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </nav>
 
             <div className="pt-2 space-y-3">

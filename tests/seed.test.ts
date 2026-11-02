@@ -65,3 +65,4 @@ describe("Catalog Seed Validation", () => {
     );
   });
 });
+
