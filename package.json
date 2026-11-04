@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm test",
+    "db:validate": "prisma validate",
+    "db:migrate:create": "prisma migrate dev --create-only",
     "catalog:import": "tsx scripts/catalog-import.ts"
   },
   "prisma": {
